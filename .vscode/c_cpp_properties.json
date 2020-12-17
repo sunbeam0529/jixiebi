@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:\\Users\\fcb19\\AppData\\Local\\Arm\\Packs\\GigaDevice\\GD32F10x_DFP\\2.0.2\\Device\\Include",
+                "C:\\Users\\fcb19\\AppData\\Local\\Arm\\Packs\\ARM\\CMSIS\\5.7.0\\CMSIS\\Include",
+                "C:\\Users\\fcb19\\AppData\\Local\\Arm\\Packs\\GigaDevice\\GD32F10x_DFP\\2.0.2\\Device\\Firmware\\Peripherals\\inc",
+                "C:\\Users\\fcb19\\AppData\\Local\\Arm\\Packs\\GigaDevice\\GD32F10x_DFP\\2.0.2\\Device\\Utilities"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "GD32F10X_CL",
+                "__STATIC_INLINE=static"
+            ],
+            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.27.29110/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 4
+}
