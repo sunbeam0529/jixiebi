@@ -2,12 +2,12 @@
 
 #include "lcd_driver.h"
 #include "systick.h"
-
+#include "zimo.h"
 
 #define RS_CMD      RESET
 #define RS_DATA     SET
 
-const unsigned char GradientColor[80] = { /* 0X00,0X10,0X01,0X00,0X25,0X00,0X01,0X1B, */
+ unsigned char const GradientColor[82] = { /* 0X00,0X10,0X01,0X00,0X25,0X00,0X01,0X1B, */
 0XDF,0XFF,0XDF,0XFF,0X7D,0XEF,0XFF,0XFF,0XDF,0XF7,0XDF,0XF7,0XBF,0XEF,0XBF,0XE7,
 0X9F,0XDF,0X5F,0XD7,0X5F,0XCF,0X5F,0XCF,0X3F,0XCF,0X1F,0XC7,0X1F,0XC7,0X1F,0XC7,
 0XFF,0XBE,0XDF,0XBE,0XFF,0XB6,0XFF,0XB6,0XDF,0XAE,0XDF,0XAE,0XDF,0XA6,0XBF,0XA6,
@@ -736,5 +736,45 @@ void LCD_DrawMainMenu(void)
         {
             LCD_Send_Dat(pGradientColor[nj]);
         }
+    }
+}
+
+void LCD_ShowChar(uint16_t x,uint16_t y,uint8_t size,uint8_t * chr,uint32_t frontground)
+{
+    uint8_t i,j;
+    volatile uint16_t temp_char;
+    uint8_t * zimo;
+    //LCD_Window(y,x,y+15,x+15);
+    zimo = GetZimoData(chr);
+    for(i=0;i<16;i++)
+    {
+        temp_char = zimo[i*2];
+        temp_char <<= 8;
+        temp_char += zimo[i*2+1];
+        for(j=0;j<16;j++)
+        {
+            if (((temp_char >> (15 - j)) & 0x01) == 0x01)
+            {
+                LCD_Pixel(y + i, x + j,frontground);
+            }
+            else
+            {
+                //LCD_Pixel(y + i, x + j,background);
+            }
+        }
+    }
+}
+
+void LCD_ShowString(uint16_t x,uint16_t y,uint8_t * chr,uint32_t frontground)
+{
+    while(chr[0] != '\0')
+    {
+        if(x>474 || y>258)
+        {
+            return;
+        }
+        LCD_ShowChar(x,y,0,chr,frontground);
+        chr += 3;
+        x += 15;
     }
 }

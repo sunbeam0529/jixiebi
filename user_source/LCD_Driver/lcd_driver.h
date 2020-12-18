@@ -99,6 +99,6 @@ void LCD_Font(uint16_t x, uint16_t y, char *text, const GFXfont *p_font, uint8_t
 void LCD_Picture_Draw(uint16_t start_x,uint16_t start_y,uint16_t end_x,uint16_t end_y,uint16_t *pic);
 
 void LCD_DrawMainMenu(void);
-
-
+void LCD_ShowChar(uint16_t x,uint16_t y,uint8_t size,uint8_t * chr,uint32_t frontground);
+void LCD_ShowString(uint16_t x,uint16_t y,uint8_t * chr,uint32_t frontground);
 #endif

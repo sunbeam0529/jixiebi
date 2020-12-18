@@ -56,6 +56,13 @@ int main()
     LCD_Circle(253,14,5,1,1,GREEN);
     LCD_Circle(327,14,5,1,1,RED);
     LCD_Circle(400,14,5,1,1,RED);
+    LCD_ShowString(230,110,"智能斜臂系统",BLACK);
+    LCD_ShowString(70,10,"主页面",BLACK);
+    LCD_ShowString(193,5,"开模完",BLACK);
+    LCD_ShowString(266,5,"安全门",BLACK);
+    LCD_ShowString(340,5,"可锁模",BLACK);
+    LCD_ShowString(413,5,"可顶针",BLACK);
+
     while(1)
     {
         //BeepEnable();

@@ -136,7 +136,7 @@
             <Capability>1</Capability>
             <DriverSelection>4101</DriverSelection>
           </Flash1>
-          <bUseTDR>0</bUseTDR>
+          <bUseTDR>1</bUseTDR>
           <Flash2>STLink\ST-LINKIII-KEIL_SWO.dll</Flash2>
           <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
@@ -313,7 +313,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>2</Optim>
+            <Optim>4</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -322,7 +322,7 @@
             <PlainCh>0</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>2</wLevel>
+            <wLevel>1</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>0</uC99>
@@ -389,31 +389,6 @@
               <FilePath>..\user_source\main.c</FilePath>
             </File>
             <File>
-              <FileName>gd32f107c_lcd_eval.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\user_source\gd32f107c_lcd_eval.c</FilePath>
-            </File>
-            <File>
-              <FileName>picture.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\user_source\picture.c</FilePath>
-            </File>
-            <File>
-              <FileName>lcd_font.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\user_source\lcd_font.c</FilePath>
-            </File>
-            <File>
-              <FileName>lcd_log.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\user_source\lcd_log.c</FilePath>
-            </File>
-            <File>
-              <FileName>pic.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\user_source\pic.c</FilePath>
-            </File>
-            <File>
               <FileName>BEEP.C</FileName>
               <FileType>1</FileType>
               <FilePath>..\user_source\BEEP.C</FilePath>
@@ -422,6 +397,11 @@
               <FileName>lcd_driver.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\user_source\LCD_Driver\lcd_driver.c</FilePath>
+            </File>
+            <File>
+              <FileName>zimo.C</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user_source\LCD_Driver\zimo.C</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "BEEP.C": "cpp"
+        "BEEP.C": "cpp",
+        "zimo.C": "cpp"
     }
 }
