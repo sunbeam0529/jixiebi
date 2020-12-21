@@ -1,4 +1,4 @@
-/*!
+	/*!
     \file    gd32f107c_lcd_eval.h
     \brief   LCD driver header file
 

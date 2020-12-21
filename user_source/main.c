@@ -9,6 +9,7 @@
 #include "pic.h"
 #include "BEEP.H"
 #include "lcd_driver.h"
+#include "key.h"
 
 volatile uint32_t sysfreq;
 
@@ -36,10 +37,10 @@ int main()
     SystemClockInit();
     systick_config(sysfreq/3);
     BeepInit();
+    KeyInit();
     gpio_init(GPIOB,GPIO_MODE_OUT_PP,GPIO_OSPEED_2MHZ,GPIO_PIN_0);
     //gpio_init(GPIOC,GPIO_MODE_OUT_PP,GPIO_OSPEED_2MHZ,GPIO_PIN_0);
-    //nvic_priority_group_set(NVIC_PRIGROUP_PRE1_SUB3);
-    //nvic_irq_enable(TIMER1_IRQn, 1, 1);
+    
     //delay_1ms(1000);
     LCD_Init();
     delay_1ms(100);
@@ -62,15 +63,13 @@ int main()
     LCD_ShowString(266,5,"安全门",BLACK);
     LCD_ShowString(340,5,"可锁模",BLACK);
     LCD_ShowString(413,5,"可顶针",BLACK);
-
+    LCD_ShowICON(21,9,0);
     while(1)
     {
         //BeepEnable();
-        gpio_bit_write(GPIOB,GPIO_PIN_0,0);
-        delay_1ms(200);
-        gpio_bit_write(GPIOB,GPIO_PIN_0,1);
-        //BeepDisable();
-        delay_1ms(800);
+        KeyScan();
+        KeyPro();
+        delay_1ms(2);
     }
     //gd_eval_led_toggle(1);
     

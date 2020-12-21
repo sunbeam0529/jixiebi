@@ -4,7 +4,7 @@
 #include "gd32f10x.h"
 
 #define  PIC_HEADSIZE    (6)
-
-extern const uint8_t gImage_pic[];
+#define ICON_NUM 1
+extern const unsigned char ICON_Arr[ICON_NUM][1568];
 
 #endif /* PICTURE_H */

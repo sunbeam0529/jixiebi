@@ -4,7 +4,7 @@
 
 
 
-const unsigned char * ZimoIndex = "智能斜臂系统主页面开模完安全门可锁顶针当前程式停止：0123456789";
+const unsigned char * ZimoIndex = "智能斜臂系统主页面开模完安全门可锁顶针当前程式停止：000001002003004005006007008009";
 
 const unsigned char ZimoData[ZIMO_NUM][32]=
 {

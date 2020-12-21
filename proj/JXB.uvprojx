@@ -403,6 +403,16 @@
               <FileType>1</FileType>
               <FilePath>..\user_source\LCD_Driver\zimo.C</FilePath>
             </File>
+            <File>
+              <FileName>pic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user_source\LCD_Driver\pic.c</FilePath>
+            </File>
+            <File>
+              <FileName>key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user_source\key.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

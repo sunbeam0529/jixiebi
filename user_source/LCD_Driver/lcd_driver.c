@@ -3,6 +3,7 @@
 #include "lcd_driver.h"
 #include "systick.h"
 #include "zimo.h"
+#include "pic.h"
 
 #define RS_CMD      RESET
 #define RS_DATA     SET
@@ -144,25 +145,25 @@ inline static void LCD_Send_Dat(uint16_t dat)
 
 inline static void LCD_Send_Reg(uint16_t cmd, uint16_t dat)
 {
-	LCD_CS_Write(RESET);
-	LCD_Send_Cmd(cmd);
-	LCD_Send_Dat(dat);
-	LCD_CS_Write(SET);
+    LCD_CS_Write(RESET);
+    LCD_Send_Cmd(cmd);
+    LCD_Send_Dat(dat);
+    LCD_CS_Write(SET);
 }
 
 inline static void LCD_Window(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
 {
-	LCD_Send_Cmd(LCD_COLUMN_ADDR);
-	LCD_Send_Dat(y1 >> 8);
-	LCD_Send_Dat(y1 & 0x00FF);
-	LCD_Send_Dat(y2 >> 8);
-	LCD_Send_Dat(y2 & 0x00FF);
-	LCD_Send_Cmd(LCD_PAGE_ADDR);
-	LCD_Send_Dat(x1 >> 8);
-	LCD_Send_Dat(x1 & 0x00FF);
-	LCD_Send_Dat(x2 >> 8);
-	LCD_Send_Dat(x2 & 0x00FF);
-	LCD_Send_Cmd(LCD_GRAM);
+    LCD_Send_Cmd(LCD_COLUMN_ADDR);
+    LCD_Send_Dat(x1 >> 8);
+    LCD_Send_Dat(x1 & 0x00FF);
+    LCD_Send_Dat(x2 >> 8);
+    LCD_Send_Dat(x2 & 0x00FF);
+    LCD_Send_Cmd(LCD_PAGE_ADDR);
+    LCD_Send_Dat(y1 >> 8);
+    LCD_Send_Dat(y1 & 0x00FF);
+    LCD_Send_Dat(y2 >> 8);
+    LCD_Send_Dat(y2 & 0x00FF);
+    LCD_Send_Cmd(LCD_GRAM);
 }
 
 
@@ -290,7 +291,7 @@ void LCD_Rect_Fill(uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint32_t colo
 {
 	uint32_t i = 0;
 	uint32_t j = (uint32_t) w * (uint32_t) h;
-	LCD_Window(y, x, y + h - 1, x + w - 1);
+	LCD_Window(x, y, x + w - 1, y + h - 1);
 	for (i = 0; i < j; i++) LCD_Send_Dat(H24_RGB565(1, color24));
 }
 
@@ -706,7 +707,7 @@ void LCD_DrawMainMenu(void)
 {
     volatile uint16_t ni,nj;
     uint16_t * pGradientColor = GradientColor;
-    LCD_Window(0,0,36,479);
+    LCD_Window(0,0,479,36);
     for(nj=0;nj<37;nj++)
     {
         for(ni=0;ni<480;ni++)
@@ -728,10 +729,9 @@ void LCD_DrawMainMenu(void)
             }
         }
     }
-    LCD_Window(230,0,270,479);
+    LCD_Window(0,230,479,270);
     for(nj=0;nj<41;nj++)
     {
-        
         for(ni=0;ni<480;ni++)
         {
             LCD_Send_Dat(pGradientColor[nj]);
@@ -755,11 +755,11 @@ void LCD_ShowChar(uint16_t x,uint16_t y,uint8_t size,uint8_t * chr,uint32_t fron
         {
             if (((temp_char >> (15 - j)) & 0x01) == 0x01)
             {
-                LCD_Pixel(y + i, x + j,frontground);
+                LCD_Pixel(x + j, y + i, frontground);
             }
             else
             {
-                //LCD_Pixel(y + i, x + j,background);
+                //LCD_Pixel(x + j,y + i, background);
             }
         }
     }
@@ -776,5 +776,25 @@ void LCD_ShowString(uint16_t x,uint16_t y,uint8_t * chr,uint32_t frontground)
         LCD_ShowChar(x,y,0,chr,frontground);
         chr += 3;
         x += 15;
+    }
+}
+
+void LCD_ShowICON(uint16_t x,uint16_t y,uint8_t iconid)
+{
+    uint8_t i,j;
+    uint16_t p,tempdata;
+    uint16_t * icondata = ICON_Arr[iconid];
+    
+    for(i=0;i<28;i++)
+    {
+        for(j=0;j<28;j++)
+        {
+            tempdata = icondata[p++];
+            if(0xffff != tempdata)
+            {
+                LCD_Window(x+j,y+i,x+j,y+i);
+	            LCD_Send_Dat(tempdata);
+            }
+        }
     }
 }
