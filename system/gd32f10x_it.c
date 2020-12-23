@@ -41,6 +41,7 @@ OF SUCH DAMAGE.
 #include "systick.h"
 #include "BEEP.H"
 
+extern void TimeBaseInterruptHandler(void);
 /*!
     \brief      this function handles NMI exception
     \param[in]  none
@@ -156,5 +157,15 @@ void TIMER1_IRQHandler(void)
         timer_interrupt_flag_clear(TIMER1, TIMER_INT_FLAG_UP);
         //gpio_bit
         BeepTimerHandler();
+    }
+}
+
+void TIMER2_IRQHandler(void)
+{
+    if(SET == timer_interrupt_flag_get(TIMER2, TIMER_INT_FLAG_UP)){
+        /* clear channel 0 interrupt bit */
+        timer_interrupt_flag_clear(TIMER2, TIMER_INT_FLAG_UP);
+        //TimeBaseHandle
+        TimeBaseInterruptHandler();
     }
 }

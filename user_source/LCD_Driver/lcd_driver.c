@@ -737,6 +737,14 @@ void LCD_DrawMainMenu(void)
             LCD_Send_Dat(pGradientColor[nj]);
         }
     }
+    LCD_Circle(180,14,5,1,1,GREEN);
+    LCD_Circle(253,14,5,1,1,GREEN);
+    LCD_Circle(327,14,5,1,1,RED);
+    LCD_Circle(400,14,5,1,1,RED);
+    LCD_ShowHanziString(193,5,"开模完",BLACK);
+    LCD_ShowHanziString(266,5,"安全门",BLACK);
+    LCD_ShowHanziString(340,5,"可锁模",BLACK);
+    LCD_ShowHanziString(413,5,"可顶针",BLACK);
 }
 
 void LCD_ShowChar(uint16_t x,uint16_t y,uint8_t size,uint8_t * chr,uint32_t frontground)
@@ -745,7 +753,32 @@ void LCD_ShowChar(uint16_t x,uint16_t y,uint8_t size,uint8_t * chr,uint32_t fron
     volatile uint16_t temp_char;
     uint8_t * zimo;
     //LCD_Window(y,x,y+15,x+15);
-    zimo = GetZimoData(chr);
+    zimo = GetZimoData(chr,0);
+    for(i=0;i<16;i++)
+    {
+        temp_char = zimo[i*2];
+        temp_char <<= 8;
+        temp_char += zimo[i*2+1];
+        for(j=0;j<16;j++)
+        {
+            if (((temp_char >> (15 - j)) & 0x01) == 0x01)
+            {
+                LCD_Pixel(x + j, y + i, frontground);
+            }
+            else
+            {
+                //LCD_Pixel(x + j,y + i, background);
+            }
+        }
+    }
+}
+void LCD_ShowHanziChar(uint16_t x,uint16_t y,uint8_t size,uint8_t * chr,uint32_t frontground)
+{
+    uint8_t i,j;
+    volatile uint16_t temp_char;
+    uint8_t * zimo;
+    //LCD_Window(y,x,y+15,x+15);
+    zimo = GetZimoData(chr,1);
     for(i=0;i<16;i++)
     {
         temp_char = zimo[i*2];
@@ -774,6 +807,20 @@ void LCD_ShowString(uint16_t x,uint16_t y,uint8_t * chr,uint32_t frontground)
             return;
         }
         LCD_ShowChar(x,y,0,chr,frontground);
+        chr += 1;
+        x += 15;
+    }
+}
+
+void LCD_ShowHanziString(uint16_t x,uint16_t y,uint8_t * chr,uint32_t frontground)
+{
+    while(chr[0] != '\0')
+    {
+        if(x>474 || y>258)
+        {
+            return;
+        }
+        LCD_ShowHanziChar(x,y,0,chr,frontground);
         chr += 3;
         x += 15;
     }

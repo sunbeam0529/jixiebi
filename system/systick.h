@@ -48,4 +48,6 @@ void delay_1ms(uint32_t count);
 /* delay decrement */
 void delay_decrement(void);
 
+void TimeBaseInterruptHandler(void);
+
 #endif /* SYSTICK_H */

@@ -102,4 +102,7 @@ void LCD_DrawMainMenu(void);
 void LCD_ShowChar(uint16_t x,uint16_t y,uint8_t size,uint8_t * chr,uint32_t frontground);
 void LCD_ShowString(uint16_t x,uint16_t y,uint8_t * chr,uint32_t frontground);
 void LCD_ShowICON(uint16_t x,uint16_t y,uint8_t iconid);
+void LCD_ShowHanziChar(uint16_t x,uint16_t y,uint8_t size,uint8_t * chr,uint32_t frontground);
+void LCD_ShowHanziString(uint16_t x,uint16_t y,uint8_t * chr,uint32_t frontground);
+
 #endif

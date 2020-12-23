@@ -413,6 +413,11 @@
               <FileType>1</FileType>
               <FilePath>..\user_source\key.c</FilePath>
             </File>
+            <File>
+              <FileName>logic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\user_source\logic.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

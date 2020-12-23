@@ -196,104 +196,104 @@ void KeyPro(void)
         break;
     case 1:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"001",BLACK);
+        LCD_ShowString(100,80,"1",BLACK);
         break;
     case 2:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"002",BLACK);
+        LCD_ShowString(100,80,"2",BLACK);
         break;
     case 3:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"003",BLACK);
+        LCD_ShowString(100,80,"3",BLACK);
         break;
     case 4:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"004",BLACK);
+        LCD_ShowString(100,80,"4",BLACK);
         break;
     case 5:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"005",BLACK);
+        LCD_ShowString(100,80,"5",BLACK);
         break;
     case 6:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"006",BLACK);
+        LCD_ShowString(100,80,"6",BLACK);
         break;
     case 7:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"007",BLACK);
+        LCD_ShowString(100,80,"7",BLACK);
         break;
     case 8:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"008",BLACK);
+        LCD_ShowString(100,80,"8",BLACK);
         break;
     case 9:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"009",BLACK);
+        LCD_ShowString(100,80,"9",BLACK);
         break;
     case 10:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"001000",BLACK);
+        LCD_ShowString(100,80,"10",BLACK);
         break;
     case 11:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"001001",BLACK);
+        LCD_ShowString(100,80,"11",BLACK);
         break;
     case 12:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"001002",BLACK);
+        LCD_ShowString(100,80,"12",BLACK);
         break;
     case 13:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"001003",BLACK);
+        LCD_ShowString(100,80,"13",BLACK);
         break;
     case 14:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"001004",BLACK);
+        LCD_ShowString(100,80,"14",BLACK);
         break;
     case 15:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"001005",BLACK);
+        LCD_ShowString(100,80,"15",BLACK);
         break;
     case 16:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"001006",BLACK);
+        LCD_ShowString(100,80,"16",BLACK);
         break;
     case 17:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"001007",BLACK);
+        LCD_ShowString(100,80,"17",BLACK);
         break;
     case 18:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"001008",BLACK);
+        LCD_ShowString(100,80,"18",BLACK);
         break;
     case 19:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"001009",BLACK);
+        LCD_ShowString(100,80,"19",BLACK);
         break;
     case 20:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"002000",BLACK);
+        LCD_ShowString(100,80,"20",BLACK);
         break;
     case 21:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"002001",BLACK);
+        LCD_ShowString(100,80,"21",BLACK);
         break;
     case 22:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"002002",BLACK);
+        LCD_ShowString(100,80,"22",BLACK);
         break;
     case 23:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"002003",BLACK);
+        LCD_ShowString(100,80,"23",BLACK);
         break;
     case 24:
         LCD_Rect_Fill(100,80,30,16,WHITE);
-        LCD_ShowString(100,80,"002004",BLACK);
+        LCD_ShowString(100,80,"24",BLACK);
         break;
     
     default:
         LCD_Rect_Fill(100,80,16*3,16,WHITE);
-        LCD_ShowString(100,80,"停止",BLACK);
+        LCD_ShowHanziString(100,80,"停止",BLACK);
 
         
         break;

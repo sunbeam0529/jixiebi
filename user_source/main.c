@@ -10,8 +10,11 @@
 #include "BEEP.H"
 #include "lcd_driver.h"
 #include "key.h"
+#include "logic.h"
 
 volatile uint32_t sysfreq;
+uint32_t TimeBaseCounter;
+uint8_t TimeBase_2ms,TimeBase_5ms,TimeBase_10ms,TimeBase_20ms,TimeBase_50ms,TimeBase_100ms,TimeBase_1000ms;
 
 void SystemClockInit(void);
 
@@ -27,7 +30,75 @@ void SystemClockInit(void)
     rcu_periph_clock_enable(RCU_GPIOD);
     rcu_periph_clock_enable(RCU_GPIOE);
     rcu_periph_clock_enable(RCU_TIMER1);
+    rcu_periph_clock_enable(RCU_TIMER2);
     sysfreq = rcu_clock_freq_get(CK_SYS);
+}
+
+void TimeBaseInit(void)
+{
+    /* ----------------------------------------------------------------------------
+    TIMER1 Configuration: 
+    TIMER1CLK = SystemCoreClock/5400 = 20KHz.
+    TIMER1 configuration is timing mode, and the timing is 1ms(20000/20 = 1ms).
+    ---------------------------------------------------------------------------- */
+    timer_parameter_struct timer_initpara;
+
+    timer_deinit(TIMER2);
+    /* initialize TIMER init parameter struct */
+    timer_struct_para_init(&timer_initpara);
+    /* TIMER1 configuration */
+    timer_initpara.prescaler         = 5399;
+    timer_initpara.alignedmode       = TIMER_COUNTER_EDGE;
+    timer_initpara.counterdirection  = TIMER_COUNTER_UP;
+    timer_initpara.period            = 20;
+    timer_initpara.clockdivision     = TIMER_CKDIV_DIV1;
+    timer_init(TIMER2, &timer_initpara);
+
+    timer_interrupt_enable(TIMER2, TIMER_INT_UP);
+    nvic_irq_enable(TIMER2_IRQn, 1, 1);
+    timer_enable(TIMER2);
+    TimeBaseCounter = 0;
+}
+
+
+
+void TimeBaseInterruptHandler(void)
+{
+    TimeBaseCounter++;
+    if(TimeBaseCounter % 2 == 0)
+    {
+        TimeBase_2ms = 1;
+    }
+    if(TimeBaseCounter % 5 == 0)
+    {
+        TimeBase_5ms = 1;
+    }
+    if(TimeBaseCounter % 10 == 0)
+    {
+        TimeBase_10ms = 1;
+    }
+    if(TimeBaseCounter % 20 == 0)
+    {
+        TimeBase_20ms = 1;
+    }
+    if(TimeBaseCounter % 50 == 0)
+    {
+        TimeBase_50ms = 1;
+    }
+    if(TimeBaseCounter % 100 == 0)
+    {
+        TimeBase_100ms = 1;
+    }
+    if(TimeBaseCounter % 1000 == 0)
+    {
+        TimeBase_1000ms = 1;
+    }
+
+    if(TimeBaseCounter > 999999)
+    {
+        TimeBaseCounter = 0;
+    }
+
 }
 
 int main()
@@ -48,28 +119,22 @@ int main()
     LCD_Rect_Fill(0, 0, 480, 272, WHITE);
     //LCD_Picture_Draw(0,0,269,269,gImage_pic);
     LCD_DrawMainMenu();
-    LCD_Line(3,38,130,134,1,SILVER);
-    LCD_Line(3,229,130,134,1,SILVER);
-    LCD_Line(130,134,349,134,1,SILVER);
-    LCD_Line(349,134,478,38,1,SILVER);
-    LCD_Line(349,134,478,229,1,SILVER);
-    LCD_Circle(180,14,5,1,1,GREEN);
-    LCD_Circle(253,14,5,1,1,GREEN);
-    LCD_Circle(327,14,5,1,1,RED);
-    LCD_Circle(400,14,5,1,1,RED);
-    LCD_ShowString(230,110,"智能斜臂系统",BLACK);
-    LCD_ShowString(70,10,"主页面",BLACK);
-    LCD_ShowString(193,5,"开模完",BLACK);
-    LCD_ShowString(266,5,"安全门",BLACK);
-    LCD_ShowString(340,5,"可锁模",BLACK);
-    LCD_ShowString(413,5,"可顶针",BLACK);
+    TimeBaseInit();
+    
     LCD_ShowICON(21,9,0);
     while(1)
     {
-        //BeepEnable();
-        KeyScan();
-        KeyPro();
-        delay_1ms(2);
+        if(TimeBase_2ms == 1)
+        {
+            TimeBase_2ms = 0;
+            KeyScan();
+            //KeyPro();
+        }
+        if(TimeBase_5ms == 1)
+        {
+            TimeBase_5ms = 0;
+            MainStateCtrl();
+        }
     }
     //gd_eval_led_toggle(1);
     
