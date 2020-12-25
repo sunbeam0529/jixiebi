@@ -293,7 +293,7 @@ void KeyPro(void)
     
     default:
         LCD_Rect_Fill(100,80,16*3,16,WHITE);
-        LCD_ShowHanziString(100,80,"停止",BLACK);
+        LCD_ShowString(100,80,"停止",BLACK);
 
         
         break;

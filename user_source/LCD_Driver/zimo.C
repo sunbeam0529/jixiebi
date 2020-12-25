@@ -2058,10 +2058,10 @@ const unsigned char ZimoData[ZIMO_NUM][32]=
 
 };
 
-ZimoType GetZimoData(uint8_t * chr,uint8_t codetype)
+ZimoType GetZimoData(uint8_t * chr)
 {
     uint8_t index;
-    if(codetype == 0)
+    if(chr[0] <= 127)
     {
         for(index=0;index<62;index++)
         {

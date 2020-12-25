@@ -6,7 +6,7 @@
 typedef uint8_t * ZimoType;
 
 
-ZimoType GetZimoData(uint8_t * chr,uint8_t codetype);
+ZimoType GetZimoData(uint8_t * chr);
 
 
 
