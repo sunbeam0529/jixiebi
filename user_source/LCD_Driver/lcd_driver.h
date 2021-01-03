@@ -32,6 +32,8 @@
 #define MAROON  0x800000 /* 128,   0,   0 */
 #define OLIVE   0x808000 /* 128, 128,   0 */
 #define LIME    0xBFFF00 /* 191, 255,   0 */
+#define PINK    0xF9C7C3 /* 249, 199, 195 */
+
 
 #define LCD_RESET	            0x0001
 #define LCD_SLEEP_OUT           0x0011

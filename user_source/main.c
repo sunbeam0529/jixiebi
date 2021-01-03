@@ -11,6 +11,8 @@
 #include "lcd_driver.h"
 #include "key.h"
 #include "logic.h"
+#include "output.h"
+#include "input.h"
 
 volatile uint32_t sysfreq;
 uint32_t TimeBaseCounter;
@@ -120,7 +122,8 @@ int main()
     //LCD_Picture_Draw(0,0,269,269,gImage_pic);
     LCD_DrawMainMenu();
     TimeBaseInit();
-    
+    Output_Init();
+    Input_Init();
     LCD_ShowICON(21,9,0);
     while(1)
     {
@@ -134,6 +137,12 @@ int main()
         {
             TimeBase_5ms = 0;
             MainStateCtrl();
+            Input_Detect();
+        }
+        if(TimeBase_50ms == 1)
+        {
+            TimeBase_50ms = 0;
+            light_test();
         }
     }
     //gd_eval_led_toggle(1);
