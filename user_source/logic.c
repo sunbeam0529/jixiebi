@@ -9,6 +9,8 @@
 #define PAGEID_FUNCTION     2
 #define PAGEID_ADVANCE      3
 #define PAGEID_MONITOR      4
+#define PAGEID_INFOMATION   5
+
 
 static uint8_t PageId=0,firststartflag=0;
 
@@ -18,13 +20,25 @@ void PagePro_StartPage(void);
 void PagePro_ShoudongPage(void);
 void PagePro_FunctionPage(void);
 void PagePro_Monitor(void);
+void PagePro_Auto(void);
+void PagePro_Security(void);
+void PagePro_Program(void);
+void PagePro_Time(void);
+void PagePro_Version(void);
+void PagePro_Update(void);
 
 void PageDraw_Shoudong(void);
 void PageDraw_StartPage(void);
 void PageDraw_Function(void);
 void PageDraw_Advance(void);
 void PageDraw_Monitor(void);
-
+void PageDraw_Infomation(void);
+void PageDraw_Auto(void);
+void PageDraw_Security(void);
+void PageDraw_Program(void);
+void PageDraw_Time(void);
+void PageDraw_Version(void);
+void PageDraw_Update(void);
 
 void PageDraw_Monitor_Light(uint8_t light_id,uint8_t state);
 
@@ -88,6 +102,14 @@ void PagePro_SwitchPage(void)
         {
             PageDraw_Monitor();
             PageId = PAGEID_MONITOR;
+        }
+        KeyId = 0;
+        break;
+    case KEY_INFO:
+        if(PageId != PAGEID_INFOMATION)
+        {
+            PageDraw_Infomation();
+            PageId = PAGEID_INFOMATION;
         }
         KeyId = 0;
         break;
@@ -262,6 +284,11 @@ void PageDraw_Monitor(void)
     {
         PageDraw_Monitor_Light(i,Input_GetState(i));
     }
+
+}
+
+void PageDraw_Infomation(void)
+{
 
 }
 
