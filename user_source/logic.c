@@ -163,6 +163,37 @@ void PagePro_Monitor(void)
     if(input_id >= 14)input_id=0;
 }
 
+void PagePro_Auto(void)
+{
+    ;//
+}
+
+void PagePro_Security(void)
+{
+    ;//
+}
+
+void PagePro_Program(void)
+{
+    ;//
+}
+
+void PagePro_Time(void)
+{
+    ;//
+}
+
+void PagePro_Version(void)
+{
+    ;//
+}
+
+void PagePro_Update(void)
+{
+    ;//
+}
+
+
 void PageDraw_Shoudong(void)
 {
     
@@ -292,6 +323,35 @@ void PageDraw_Infomation(void)
 
 }
 
+void PageDraw_Auto(void)
+{
+    ;//
+}
+
+void PageDraw_Security(void)
+{
+    ;//
+}
+
+void PageDraw_Program(void)
+{
+    ;//
+}
+
+void PageDraw_Time(void)
+{
+    ;//
+}
+
+void PageDraw_Version(void)
+{
+    ;//
+}
+
+void PageDraw_Update(void)
+{
+    ;//
+}
 
 
 void PageDraw_Monitor_Light(uint8_t light_id,uint8_t state)
